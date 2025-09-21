@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playing Along - Building AI Agents for Co-Creation of Improvised Stories</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <h2>Playing Along</h2>
+            </div>
+            <div class="nav-links">
+                <a href="#abstract">Abstract</a>
+                <a href="#examples">Examples</a>
+                <a href="#details">Details</a>
+                <a href="#citation">Citation</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="conference-badge">
+                        <a href="https://computationalcreativity.net/iccc25/" target="_blank" rel="noopener" class="iccc-badge-link">
+                            <span class="iccc-badge">Accepted at ICCC'25<br><span class="iccc-sub">16th International Conference on Computational Creativity, 2025</span></span>
+                        </a>
+                    </div>
+                    <h1 class="paper-title">Playing Along - Building AI Agents for Co-Creation of Improvised Stories</h1>
+                    <p class="paper-subtitle">A novel approach to AI-human collaborative storytelling through improvisation</p>
+                    <div class="author-info">
+                        <p class="authors">Idan Dov Vidra<sup>1</sup>, Gal Kimron<sup>1</sup>, Lior Noy<sup>2</sup>, Ariel Shamir<sup>1</sup></p>
+                        <p class="affiliations">
+                            <sup>1</sup>Reichman University, 
+                            <sup>2</sup>Ono Academic College,
+                        </p>
+                    </div>
+                    <div class="paper-links">
+                        <a href="papers/Playing Along - Building AI Agents for Co-Creation of Improvised Stories - Paper.pdf" class="btn btn-primary" target="_blank">
+                            <i class="fas fa-file-pdf"></i>
+                            Read Paper
+                        </a>
+                        <a href="papers/Playing Along - Building AI Agents for Co-Creation of Improvised Stories - Supplemental Information.pdf" class="btn btn-secondary" target="_blank">
+                            <i class="fas fa-file-alt"></i>
+                            Supplemental Information
+                        </a>
+                        <a href="#" class="btn btn-secondary" target="_blank">
+                            <i class="fab fa-arxiv"></i>
+                            arXiv
+                        </a>
+                        <a href="https://github.com/idanvidra/Yes-And-Game-Paper" class="btn btn-secondary" target="_blank">
+                            <i class="fab fa-github"></i>
+                            Code
+                        </a>
+                        <a href="https://www.youtube.com/watch?v=TpSOhtMsZds" class="btn btn-secondary btn-presentation" target="_blank">
+                            <i class="fab fa-youtube"></i>
+                            Watch Presentation
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Abstract Section -->
+        <section id="abstract" class="section">
+            <div class="container">
+                <h2 class="section-title">Abstract</h2>
+                <div class="abstract-content">
+                    <p>
+                        This work focuses on human-agent co-creation of improvised stories, investigating whether Large Language Models can effectively engage in an improvisational practice known as the "Yes! and…" game. We demonstrate how AI systems can participate successfully in improvisational co-creation, moving beyond response generation to collaborative story-telling. We provide a systematic framework for evaluating creative AI outputs in improvisational contexts, combining human evaluation with computational metrics. Our evaluations show that stories co-created with an AI agent are indistinguishable from stories co-created with a human in terms of novelty, value, and surprise. This shows how "hallucinations" – typically considered problematic in AI systems – can serve as creative assets in collaborative storytelling. More generally, our approach presents the "Yes! and…" game as a novel model-system for studying improvised co-creativity in a well-defined and measurable setup.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Examples Section -->
+        <section id="examples" class="section">
+            <div class="container">
+                <h2 class="section-title">Examples & Results</h2>
+                <div class="examples-list">
+                    <div class="example-row">
+                        <div class="example-image-large">
+                            <img src="images/hh_game_example.png" alt="Yes! and... Game Example" />
+                        </div>
+                        <div class="example-content-large">
+                            <h3>Yes! and... Game Example</h3>
+                            <p>An example snippet from a "Yes! and..." game showing the collaborative storytelling format where participants build upon each other's contributions.</p>
+                        </div>
+                    </div>
+                    <div class="example-row">
+                        <div class="example-image-large">
+                            <img src="images/creative_distributions_plot.png" alt="Creative Ratings Comparison" />
+                        </div>
+                        <div class="example-content-large">
+                            <h3>Creative Ratings Comparison</h3>
+                            <p>Comparison of human raters' 1-7 scale ratings over all reviewed games between AI-Human games and Human-Human games, showing the quality assessment of collaborative storytelling.</p>
+                        </div>
+                    </div>
+                    <div class="example-row">
+                        <div class="example-image-large">
+                            <img src="images/novelty_barplot_1.png" alt="Novelty Score Comparison" />
+                        </div>
+                        <div class="example-content-large">
+                            <h3>Novelty Score Analysis</h3>
+                            <p>Novelty score comparison between human players and AI players across multiple models. Humans consistently made bigger jumps and scored higher novelty, while AI tended to stay closer to previous turns.</p>
+                        </div>
+                    </div>
+                    <div class="example-row">
+                        <div class="example-image-large">
+                            <img src="images/surprise_barplot_2.png" alt="Surprise Score Comparison" />
+                        </div>
+                        <div class="example-content-large">
+                            <h3>Surprise Score Analysis</h3>
+                            <p>Average surprise scores for the three groups: Humans in Human-Human games, Humans in AI-Human games, and AI in AI-Human games. AI contributions were consistently more surprising, and humans playing with AI were also more surprising than humans playing with humans.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Contributions -->
+        <section class="section bg-light">
+            <div class="container">
+                <h2 class="section-title">Key Contributions</h2>
+                <div class="contributions">
+                    <div class="contribution-item">
+                        <div class="contribution-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3>Indistinguishable AI-Human Collaboration</h3>
+                        <p>Stories co-created with AI partners received similar ratings to human-human collaborations in external evaluations, and participants in our "Turing test" experiment had difficulty distinguishing between the two conditions. This demonstrates that LLMs can meaningfully engage in structured creative improvisation, contributing to coherent narrative development within the "Yes! and..." game.</p>
+                    </div>
+                    <div class="contribution-item">
+                        <div class="contribution-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h3>Methodological Advances</h3>
+                        <ul>
+                            <li><strong>Reduced Complexity:</strong> The text-based format allows controlled study of core creative dynamics, similar to prior work in movement and visual improvisation.</li>
+                            <li><strong>Quantifiable Assessment:</strong> The experimental setup enables measurement of creative contributions through computational metrics.</li>
+                            <li><strong>Scalability:</strong> The chat-based platform supports systematic large-scale data collection and analysis.</li>
+                        </ul>
+                    </div>
+                    <div class="contribution-item">
+                        <div class="contribution-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Systematic Framework for Collaborative AI</h3>
+                        <p>By integrating improvisational techniques with computational creativity assessment, we establish a systematic framework for developing collaborative AI systems and studying human-AI creative interaction.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Future Work Section -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Future Work</h2>
+                <div class="details-content">
+                    <div class="detail-block">
+                        <ul>
+                            <li>Comparing expert improvisers with AI performance.</li>
+                            <li>Developing systems for dynamic AI contribution control in co-creative processes.</li>
+                            <li>Implementing real-time evaluation systems for adaptive AI responses.</li>
+                            <li>Creating platforms for large-scale, unbiased interaction studies.</li>
+                            <li>Exploring AI's unique creative contributions beyond human-like performance.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Details Section -->
+        <section id="details" class="section bg-light">
+            <div class="container">
+                <h2 class="section-title">Technical Details</h2>
+                <div class="details-content">
+                    <div class="detail-block">
+                        <h3>Methodology</h3>
+                        <p>Our research investigates Large Language Models' ability to engage in the "Yes! and..." improvisational game, 
+                        a collaborative storytelling practice where participants build upon each other's contributions. We developed 
+                        AI agents that can participate in this creative process, moving beyond traditional response generation to 
+                        active co-creation.</p>
+                    </div>
+                    <div class="detail-block">
+                        <h3>Experimental Setup</h3>
+                        <p>We conducted systematic evaluations comparing AI-human co-created stories with human-human co-created stories. 
+                        Our evaluation framework combines human assessment with computational metrics, measuring novelty, value, and 
+                        surprise across different storytelling scenarios and participant groups.</p>
+                    </div>
+                    <div class="detail-block">
+                        <h3>Results Analysis</h3>
+                        <p>Our key finding demonstrates that stories co-created with AI agents are indistinguishable from those 
+                        co-created with humans across all measured dimensions. This reveals how AI "hallucinations" – typically 
+                        viewed as problematic – can actually serve as creative assets in collaborative storytelling contexts.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Citation Section -->
+        <section id="citation" class="section">
+            <div class="container">
+                <h2 class="section-title">Citation</h2>
+                <div class="citation-box">
+                    <div class="citation-content">
+                        <code>
+                            @inproceedings{vidra2025playing,<br>
+                            &nbsp;&nbsp;title={Playing Along - Building AI Agents for Co-Creation of Improvised Stories},<br>
+                            &nbsp;&nbsp;author={Vidra, Idan Dov and Kimron, Gal and Noy, Lior and Shamir, Ariel},<br>
+                            &nbsp;&nbsp;booktitle={Proceedings of the 16th International Conference on Computational Creativity},<br>
+                            &nbsp;&nbsp;year={2025}<br>
+                            }
+                        </code>
+                    </div>
+                    <button class="copy-btn" onclick="copyToClipboard()">
+                        <i class="fas fa-copy"></i>
+                        Copy Citation
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Idan Dov Vidra, Gal Kimron, Lior Noy, Ariel Shamir. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
