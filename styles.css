@@ -80,7 +80,7 @@ body {
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #667eea 0%, #52a1bd 100%);
     color: white;
     padding: 120px 0 80px;
     text-align: center;
@@ -219,7 +219,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #667eea 0%, #52a1bd 100%);
     border-radius: 50%;
     color: white;
     font-size: 1.5rem;
@@ -464,7 +464,7 @@ html {
 }
 .iccc-badge {
     display: inline-block;
-    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(90deg, #667eea 0%, #52a1bd 100%);
     color: #fff;
     font-weight: 600;
     font-size: 1.1rem;
@@ -476,7 +476,7 @@ html {
     transition: background 0.2s;
 }
 .iccc-badge:hover {
-    background: linear-gradient(90deg, #764ba2 0%, #667eea 100%);
+    background: linear-gradient(90deg, #52a1bd 0%, #667eea 100%);
     color: #fff;
 }
 .iccc-sub {
