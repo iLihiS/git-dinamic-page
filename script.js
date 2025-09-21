@@ -39,9 +39,192 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Add scroll effect to navbar
+    // Animate list items on scroll
+    const listObserverOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const listObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                console.log('Future work section is visible!');
+                const listItems = entry.target.querySelectorAll('li');
+                console.log('Found list items:', listItems.length);
+                listItems.forEach((item, index) => {
+                    setTimeout(() => {
+                        console.log('Animating item', index);
+                        item.classList.add('animate-in');
+                    }, index * 400); // 400ms delay between each item
+                });
+            } else {
+                // Reset animation when leaving viewport
+                const listItems = entry.target.querySelectorAll('li');
+                listItems.forEach(item => {
+                    item.classList.remove('animate-in');
+                });
+            }
+        });
+    }, listObserverOptions);
+    
+    // Observe future work list specifically
+    const futureWorkBlocks = document.querySelectorAll('.future-work-list');
+    console.log('Found future work blocks:', futureWorkBlocks.length);
+    futureWorkBlocks.forEach(block => {
+        if (block.querySelector('ul')) {
+            console.log('Observing future work block');
+            listObserver.observe(block);
+        }
+    });
+    
+    // Animate installation steps on scroll
+    const installationObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                console.log('Installation steps section is visible!');
+                const steps = entry.target.querySelectorAll('.installation-step');
+                console.log('Found installation steps:', steps.length);
+                steps.forEach((step, index) => {
+                    setTimeout(() => {
+                        console.log('Animating step', index + 1);
+                        step.classList.add('animate-in');
+                    }, index * 500); // 500ms delay between each step
+                });
+            } else {
+                // Reset animation when leaving viewport
+                const steps = entry.target.querySelectorAll('.installation-step');
+                steps.forEach(step => {
+                    step.classList.remove('animate-in');
+                });
+            }
+        });
+    }, listObserverOptions);
+    
+    // Observe installation steps
+    const installationSteps = document.querySelectorAll('.installation-steps');
+    installationSteps.forEach(block => {
+        installationObserver.observe(block);
+    });
+    
+    // Video auto-play/pause and smooth scaling
+    const videoContainer = document.querySelector('.marketing-demo');
+    const video = document.querySelector('.marketing-demo video');
+    
+    if (videoContainer && video) {
+        // Video intersection observer for play/pause
+        const videoPlayObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Video is visible - play it
+                    video.muted = true; // Ensure muted for autoplay
+                    video.play().then(() => {
+                        console.log('Video started playing automatically');
+                    }).catch(e => {
+                        console.log('Auto-play prevented, trying to unmute and play:', e);
+                        // If autoplay fails, try without mute (user will need to interact)
+                        video.muted = false;
+                    });
+                } else {
+                    // Video is not visible - pause it
+                    video.pause();
+                    console.log('Video paused');
+                }
+            });
+        }, {
+            threshold: 0.2 // Play when 20% of video is visible (earlier trigger)
+        });
+        
+        videoPlayObserver.observe(videoContainer);
+        
+        // Smooth scaling effect
+        function updateVideoScale() {
+            const rect = videoContainer.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            const videoCenter = rect.top + rect.height / 2;
+            // Move the optimal point lower than screen center (60% down from top)
+            const optimalPoint = windowHeight * 0.6;
+            
+            // Only scale if video is visible
+            if (rect.bottom > 0 && rect.top < windowHeight) {
+                // Define center zone (40% of screen height for smoother effect)
+                const centerZoneHeight = windowHeight * 0.4;
+                const distanceFromOptimal = Math.abs(videoCenter - optimalPoint);
+                const maxDistance = centerZoneHeight / 2;
+                
+                let scale = 1;
+                let translateY = 0;
+                
+                if (distanceFromOptimal < maxDistance) {
+                    // Calculate smooth progress (0 to 1)
+                    const progress = 1 - (distanceFromOptimal / maxDistance);
+                    
+                    // Gentle scaling from 1 to 1.8
+                    scale = 1 + (progress * 0.8);
+                    
+                    // Slight upward movement
+                    translateY = -progress * 15;
+                    
+                    console.log(`Video scaling: ${scale.toFixed(2)}, progress: ${progress.toFixed(2)}, optimal point: ${optimalPoint}px`);
+                }
+                
+                // Apply smooth transformation
+                video.style.transform = `scale(${scale}) translateY(${translateY}px)`;
+                video.style.zIndex = scale > 1.3 ? '1500' : 'auto';
+            } else {
+                // Reset when not visible
+                video.style.transform = 'scale(1) translateY(0px)';
+                video.style.zIndex = 'auto';
+            }
+        }
+        
+        // Smooth scroll handling with throttling
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    updateVideoScale();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+        
+        // Initial call
+        updateVideoScale();
+    }
+    
+    // General scroll animations for sections and titles
+    const generalObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            } else {
+                // Reset animation when leaving viewport
+                entry.target.style.opacity = '0';
+                entry.target.style.transform = 'translateY(30px)';
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+    
+    // Observe all sections and titles
+    const elementsToAnimate = document.querySelectorAll('.section-title, .contribution-item, .example-row, .detail-block');
+    elementsToAnimate.forEach(element => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(30px)';
+        element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        generalObserver.observe(element);
+    });
+    
+    // Add scroll effect to navbar and footer
     window.addEventListener('scroll', function() {
         const navbar = document.querySelector('.navbar');
+        const footer = document.querySelector('.footer');
+        
+        // Navbar effect
         if (window.scrollY > 50) {
             navbar.style.background = 'rgba(255, 255, 255, 0.98)';
             navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
@@ -49,30 +232,18 @@ document.addEventListener('DOMContentLoaded', function() {
             navbar.style.background = 'rgba(255, 255, 255, 0.95)';
             navbar.style.boxShadow = 'none';
         }
-    });
-    
-    // Animate elements on scroll
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
-    
-    // Observe all sections and cards
-    const elementsToAnimate = document.querySelectorAll('.section, .contribution-item, .example-item, .detail-block');
-    elementsToAnimate.forEach(element => {
-        element.style.opacity = '0';
-        element.style.transform = 'translateY(30px)';
-        element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(element);
+        
+        // Footer effect - check if at bottom
+        const scrollTop = window.scrollY;
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        
+        // If scrolled to within 100px of bottom
+        if (scrollTop + windowHeight >= documentHeight - 100) {
+            footer.classList.add('at-bottom');
+        } else {
+            footer.classList.remove('at-bottom');
+        }
     });
 });
 

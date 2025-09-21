@@ -11,7 +11,7 @@
     <link rel="shortcut icon" href="images/logo.png">
     
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -22,9 +22,10 @@
             </div>
             <div class="nav-links">
                 <a href="#abstract">Abstract</a>
+                <a href="#demo"> Demo</a>
                 <a href="#examples">Examples</a>
                 <a href="#details">Details</a>
-                <a href="#citation">Citation</a>
+                <a href="#installation">Installation</a>
             </div>
         </div>
     </nav>
@@ -36,39 +37,37 @@
                 <div class="hero-content">
                     <h1 class="paper-title">Mirror Mirror AI</h1>
                     <p class="paper-subtitle">A smart mirror that can help you decide if you're comfortable with your outfit.</p>
-                    <div class="conference-badge">
-                        <a href="https://computationalcreativity.net/iccc25/" target="_blank" rel="noopener" class="iccc-badge-link">
-                            <div class="logo-image">
+                    <div class="logo-image-container">                            <div class="logo-image">
                                 <img src="images/logo.png" alt="logo" />
-                            </div>
-                        </a>
-                    </div>
+                            </div>                    </div>
                     <div class="author-info">
-                        <p class="authors">Developed by: <strong>Lihi Saar, Aviad Zer, Yael Zini</strong></p>
-                        <p class="mentors">mentored by: <strong>Eyal Zinger, Lior Noy</strong></p>
+                        <p class="authors"><small>Developed by:</small> <strong>Lihi Saar, Aviad Zer, Yael Zini</strong></p>
+                        <p class="mentors authors"><small>mentored by:</small> <strong>Eyal Zinger, Lior Noy</strong></p>
                         <p class="affiliations">Ono Academic College</p>
                     </div>
                     <div class="paper-links">
+                        
                         <a href="papers/Playing Along - Building AI Agents for Co-Creation of Improvised Stories - Paper.pdf" class="btn btn-primary" target="_blank">
-                            <i class="fas fa-file-pdf"></i>
-                            Read Paper
+                            <i class="fab fa-youtube"></i>
+                            Demo presentation
+                        </a>
+                        <a href="https://www.youtube.com/watch?v=TpSOhtMsZds" class="btn btn-secondary btn-presentation" target="_blank">
+                            <i class="fab fa-youtube"></i>
+                            Watch Marking Video
                         </a>
                         <a href="papers/Playing Along - Building AI Agents for Co-Creation of Improvised Stories - Supplemental Information.pdf" class="btn btn-secondary" target="_blank">
-                            <i class="fas fa-file-alt"></i>
-                            Supplemental Information
+                            <i class="fab fa-youtube"></i>
+                            Explanatory Presentation
                         </a>
                         <a href="#" class="btn btn-secondary" target="_blank">
-                            <i class="fab fa-arxiv"></i>
-                            arXiv
+                            <i class="fas fa-file-alt"></i>
+                            Summary Document
                         </a>
                         <a href="https://github.com/idanvidra/Yes-And-Game-Paper" class="btn btn-secondary" target="_blank">
                             <i class="fab fa-github"></i>
                             Code
                         </a>
-                        <a href="https://www.youtube.com/watch?v=TpSOhtMsZds" class="btn btn-secondary btn-presentation" target="_blank">
-                            <i class="fab fa-youtube"></i>
-                            Watch Presentation
-                        </a>
+                       
                     </div>
                 </div>
             </div>
@@ -80,8 +79,30 @@
                 <h2 class="section-title">Abstract</h2>
                 <div class="abstract-content">
                     <p>
-                        This work focuses on human-agent co-creation of improvised stories, investigating whether Large Language Models can effectively engage in an improvisational practice known as the "Yes! and…" game. We demonstrate how AI systems can participate successfully in improvisational co-creation, moving beyond response generation to collaborative story-telling. We provide a systematic framework for evaluating creative AI outputs in improvisational contexts, combining human evaluation with computational metrics. Our evaluations show that stories co-created with an AI agent are indistinguishable from stories co-created with a human in terms of novelty, value, and surprise. This shows how "hallucinations" – typically considered problematic in AI systems – can serve as creative assets in collaborative storytelling. More generally, our approach presents the "Yes! and…" game as a novel model-system for studying improvised co-creativity in a well-defined and measurable setup.
-                    </p>
+                        <strong>Mirror Mirror AI</strong> is an innovative smart mirror that redefines the daily dressing experience.
+                        <br><br>
+                        Using a <span class="underlined-text">custom-trained YOLO model on a dataset we created and labeled</span> ourselves, the mirror identifies clothing items in real time. It then recognizes the user standing in front of it with <span class="underlined-text">DeepFace-based facial recognition</span>, ensuring that recommendations are personal and unique for each individual.
+                        <br><br>
+                        At the core of the system lies our <span class="underlined-text">adaptive recommendation engine</span>, a feedback-driven model that we independently designed and developed. By learning from user responses (“too hot,” “too cold,” “comfortable”), the system evolves over time to deliver increasingly accurate and personalized outfit suggestions.
+                        <br><br>
+                        Beyond weather-matching outfits, Mirror Mirror AI creates a seamless fusion between fashion and technology, turning a simple mirror into an intelligent companion that answers the timeless question: <strong>“Who’s the most stylish of them all?”</strong>                    </p>
+                </div>
+            </div>
+        </section>
+
+         <!-- Marketing Demo Section -->
+         <section id="demo" class="section">
+            <div class="container">
+                <h2 class="section-title">Curious?</h2>
+                <div class="abstract-content">
+                    <p class="section-subtitle">Meet the smart mirror everyone will talk about</p>
+                    <div class="marketing-demo">
+                        <video width="560" height="315" controls muted autoplay loop playsinline>
+                            <source src="images/React Testing Guide (Video) - Lihi Saar.mp4" type="video/mp4">
+                            <source src="images/Screen Recording 2025-09-11 at 15.12.23.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
                 </div>
             </div>
         </section>
@@ -89,17 +110,8 @@
         <!-- Examples Section -->
         <section id="examples" class="section">
             <div class="container">
-                <h2 class="section-title">Examples & Results</h2>
+                <h2 class="section-title">Live Examples & Results</h2>
                 <div class="examples-list">
-                    <div class="example-row">
-                        <div class="example-image-large">
-                            <img src="images/hh_game_example.png" alt="Yes! and... Game Example" />
-                        </div>
-                        <div class="example-content-large">
-                            <h3>Yes! and... Game Example</h3>
-                            <p>An example snippet from a "Yes! and..." game showing the collaborative storytelling format where participants build upon each other's contributions.</p>
-                        </div>
-                    </div>
                     <div class="example-row">
                         <div class="example-image-large">
                             <img src="images/creative_distributions_plot.png" alt="Creative Ratings Comparison" />
@@ -132,34 +144,44 @@
         </section>
 
         <!-- Key Contributions -->
-        <section class="section bg-light">
+        <section class="section bg-gradient-light">
             <div class="container">
                 <h2 class="section-title">Key Contributions</h2>
                 <div class="contributions">
                     <div class="contribution-item">
                         <div class="contribution-icon">
-                            <i class="fas fa-lightbulb"></i>
+                            <i class="fas fa-tags"></i>
                         </div>
-                        <h3>Indistinguishable AI-Human Collaboration</h3>
-                        <p>Stories co-created with AI partners received similar ratings to human-human collaborations in external evaluations, and participants in our "Turing test" experiment had difficulty distinguishing between the two conditions. This demonstrates that LLMs can meaningfully engage in structured creative improvisation, contributing to coherent narrative development within the "Yes! and..." game.</p>
+                        <h3>Custom Dataset & Model Training</h3>
+                        <p> We created and labeled our own dataset and used it to train a YOLO model tailored to clothing recognition. This significantly improved accuracy and ensured the system was built on data directly relevant to our use case, rather than relying on generic pre-trained sets.</p>
                     </div>
                     <div class="contribution-item">
                         <div class="contribution-icon">
-                            <i class="fas fa-cogs"></i>
+                            <i class="fas fa-brain"></i>
                         </div>
-                        <h3>Methodological Advances</h3>
-                        <ul>
-                            <li><strong>Reduced Complexity:</strong> The text-based format allows controlled study of core creative dynamics, similar to prior work in movement and visual improvisation.</li>
-                            <li><strong>Quantifiable Assessment:</strong> The experimental setup enables measurement of creative contributions through computational metrics.</li>
-                            <li><strong>Scalability:</strong> The chat-based platform supports systematic large-scale data collection and analysis.</li>
-                        </ul>
+                        <h3>Adaptive Recommendation Engine</h3>
+                        <p>At the heart of the project lies a feedback-driven recommendation system we designed and developed ourselves. By learning from user inputs (“too hot,” “too cold”), the engine continuously refines outfit suggestions, making the experience more personal and accurate over time.</p>
                     </div>
                     <div class="contribution-item">
                         <div class="contribution-icon">
-                            <i class="fas fa-users"></i>
+                            <i class="fas fa-user-check"></i>
                         </div>
-                        <h3>Systematic Framework for Collaborative AI</h3>
-                        <p>By integrating improvisational techniques with computational creativity assessment, we establish a systematic framework for developing collaborative AI systems and studying human-AI creative interaction.</p>
+                        <h3>Personalized User Interaction</h3>
+                        <p>The mirror recognizes the individual standing in front of it through DeepFace-based facial recognition. Each user receives unique, profile-specific recommendations, ensuring that personalization is not just a feature but a defining characteristic of the system.</p>
+                    </div>
+                    <div class="contribution-item">
+                        <div class="contribution-icon">
+                            <i class="fas fa-microphone-alt"></i>
+                        </div>
+                        <h3>Accessible & Natural Feedback</h3>
+                        <p>With speech-to-text for input and text-to-speech for output, user interaction becomes seamless and inclusive. This lowers barriers for people with visual impairments and makes the system easy and intuitive for everyday use.</p>
+                    </div>
+                    <div class="contribution-item">
+                        <div class="contribution-icon">
+                            <i class="fas fa-tshirt"></i>
+                        </div>
+                        <h3>Bridging Fashion and Technology</h3>
+                        <p>Beyond the technical aspects, Mirror Mirror AI demonstrates how artificial intelligence can be meaningfully integrated into daily life, turning a simple mirror into an evolving AI companion that blends practicality, creativity, and style.</p>
                     </div>
                 </div>
             </div>
@@ -170,13 +192,12 @@
             <div class="container">
                 <h2 class="section-title">Future Work</h2>
                 <div class="details-content">
-                    <div class="detail-block">
+                    <div class="detail-block future-work-list">
                         <ul>
-                            <li>Comparing expert improvisers with AI performance.</li>
-                            <li>Developing systems for dynamic AI contribution control in co-creative processes.</li>
-                            <li>Implementing real-time evaluation systems for adaptive AI responses.</li>
-                            <li>Creating platforms for large-scale, unbiased interaction studies.</li>
-                            <li>Exploring AI's unique creative contributions beyond human-like performance.</li>
+                            <li><strong>Enhanced recognition accuracy</strong> – Further improving the YOLO model and dataset to better distinguish between visually similar garments and users.</li>
+                            <li><strong>Style-based recommendations</strong> – Moving beyond weather and comfort by incorporating each user’s fashion taste and trends.</li>
+                            <li><strong>User-friendly interface</strong> – Developing a polished UI with dashboards, outfit history, and style insights.</li>
+                            <li><strong>Scalability & integration</strong> – Adapting the system for wider platforms such as mobile apps or smart home devices.</li>
                         </ul>
                     </div>
                 </div>
@@ -188,48 +209,77 @@
             <div class="container">
                 <h2 class="section-title">Technical Details</h2>
                 <div class="details-content">
-                    <div class="detail-block">
+                    <div class="detail-block bg-gradient-light">
                         <h3>Methodology</h3>
-                        <p>Our research investigates Large Language Models' ability to engage in the "Yes! and..." improvisational game, 
-                        a collaborative storytelling practice where participants build upon each other's contributions. We developed 
-                        AI agents that can participate in this creative process, moving beyond traditional response generation to 
-                        active co-creation.</p>
+                        <p>Our project explores how computer vision and machine learning can enhance the everyday act of getting dressed.
+                        <br>We developed <strong>Mirror Mirror AI</strong>, a smart mirror that identifies clothing in real time, recognizes the individual user standing in front of it, and delivers personalized outfit recommendations. 
+                        The system is powered by a custom-trained YOLO model for clothing detection, DeepFace for user recognition, and an adaptive feedback-driven recommendation engine we designed ourselves.</p>
                     </div>
-                    <div class="detail-block">
+                    <div class="detail-block bg-gradient-light">
                         <h3>Experimental Setup</h3>
-                        <p>We conducted systematic evaluations comparing AI-human co-created stories with human-human co-created stories. 
-                        Our evaluation framework combines human assessment with computational metrics, measuring novelty, value, and 
-                        surprise across different storytelling scenarios and participant groups.</p>
+                        <p>We created and labeled a custom dataset to train the YOLO model, ensuring accurate detection across multiple clothing categories. 
+                            <br>The mirror registers users with facial recognition and maintains personalized profiles. Recommendations are then generated by combining live weather data (via OpenWeatherAPI) with user-specific history and feedback (“too hot,” “too cold”). 
+                            <br>A speech-to-text interface allows users to provide feedback naturally, while a text-to-speech engine delivers verbal recommendations.</p>
                     </div>
-                    <div class="detail-block">
+                    <div class="detail-block bg-gradient-light">
                         <h3>Results Analysis</h3>
-                        <p>Our key finding demonstrates that stories co-created with AI agents are indistinguishable from those 
-                        co-created with humans across all measured dimensions. This reveals how AI "hallucinations" – typically 
-                        viewed as problematic – can actually serve as creative assets in collaborative storytelling contexts.</p>
+                        <p>Our findings show that the system successfully identifies garments in real time, recognizes users, and provides increasingly accurate outfit suggestions with each interaction. 
+                            <br>The adaptive recommendation engine improves personalization as feedback accumulates, making the mirror not only a practical assistant but also an evolving AI companion. 
+                            <br>The results demonstrate how machine learning can bridge the gap between fashion, accessibility, and technology, offering value to everyday users as well as people with visual impairments.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Citation Section -->
-        <section id="citation" class="section">
+        <!-- Installation Guide Section -->
+        <section id="installation" class="last section">
             <div class="container">
-                <h2 class="section-title">Citation</h2>
-                <div class="citation-box">
-                    <div class="citation-content">
-                        <code>
-                            @inproceedings{vidra2025playing,<br>
-                            &nbsp;&nbsp;title={Playing Along - Building AI Agents for Co-Creation of Improvised Stories},<br>
-                            &nbsp;&nbsp;author={Vidra, Idan Dov and Kimron, Gal and Noy, Lior and Shamir, Ariel},<br>
-                            &nbsp;&nbsp;booktitle={Proceedings of the 16th International Conference on Computational Creativity},<br>
-                            &nbsp;&nbsp;year={2025}<br>
-                            }
-                        </code>
+                <h2 class="section-title">Installation Guide</h2>
+                <div class="installation-steps">
+                    <div class="installation-step">
+                        <p class="citation-text"><span class="citation-step-text">Step 1:</span> Clone the repository</p>
+                        <div class="citation-box">
+                            <div class="citation-content">
+                                <code>
+                                    git clone <repo-link><br>
+                                    cd <path-to-mirror-mirror-ai>
+                                        
+                                </code>
+                            </div>
+                            <button class="copy-btn" onclick="copyToClipboard()">
+                                <i class="fas fa-copy"></i>
+                                Copy Code
+                            </button>
+                        </div>
                     </div>
-                    <button class="copy-btn" onclick="copyToClipboard()">
-                        <i class="fas fa-copy"></i>
-                        Copy Citation
-                    </button>
+                    <div class="installation-step">
+                        <p class="citation-text"><span class="citation-step-text">Step 2:</span> Install dependencies</p>
+                        <div class="citation-box">
+                            <div class="citation-content">
+                                <code>
+                                    pip install -r requirements.txt
+                                </code>
+                            </div>
+                            <button class="copy-btn" onclick="copyToClipboard()">
+                                <i class="fas fa-copy"></i>
+                                Copy Code
+                            </button>
+                        </div>
+                    </div>
+                    <div class="installation-step">
+                        <p class="citation-text"><span class="citation-step-text">Step 3:</span> Run the main script</p>
+                        <div class="citation-box">
+                            <div class="citation-content">
+                                <code>
+                                    python main.py
+                                </code>
+                            </div>
+                            <button class="copy-btn" onclick="copyToClipboard()">
+                                <i class="fas fa-copy"></i>
+                                Copy Code
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
