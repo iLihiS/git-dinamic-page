@@ -112,7 +112,7 @@ body {
     position: relative;
     justify-content: center;
     align-items: center;
-    margin: 50px;
+    margin-bottom: 50px;
 }
 .logo-image img {
     width: 100%;
