@@ -10,6 +10,19 @@ Mirror Mirror AI is an innovative smart mirror project that combines computer vi
 
 **📱 [View Live Website](https://lihis.github.io/git-dinamic-page/)**
 
+## 👥 Team
+
+**Developed by:**
+- **Lihi Saar** 
+- **Aviad Zer**
+- **Yael Zini**
+
+**Mentored by:**
+- **Eyal Zinger**
+- **Lior Noy**
+
+**Institution:** Ono Academic College
+
 ## ✨ Key Features
 
 - **Real-time Clothing Detection** - Custom-trained YOLO model for accurate garment identification
@@ -25,19 +38,6 @@ Mirror Mirror AI is an innovative smart mirror project that combines computer vi
 - **APIs**: OpenWeatherAPI for weather data
 - **Interface**: Speech recognition, Text-to-speech
 - **Frontend**: HTML5, CSS3, JavaScript with modern animations
-
-## 👥 Team
-
-**Developed by:**
-- **Lihi Saar** 
-- **Aviad Zer**
-- **Yael Zini**
-
-**Mentored by:**
-- **Eyal Zinger**
-- **Lior Noy**
-
-**Institution:** Ono Academic College
 
 ## 📋 Installation
 
