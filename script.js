@@ -111,6 +111,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const video = document.querySelector('.marketing-demo video');
     
     if (videoContainer && video) {
+        // Set video volume to 50%
+        video.volume = 0.5;
+        
         // Video intersection observer for play/pause
         const videoPlayObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -118,11 +121,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Video is visible - play it
                     video.muted = true; // Ensure muted for autoplay
                     video.play().then(() => {
-                        console.log('Video started playing automatically');
-                    }).catch(e => {
-                        console.log('Auto-play prevented, trying to unmute and play:', e);
-                        // If autoplay fails, try without mute (user will need to interact)
+                        // Successfully started - now unmute and set volume
                         video.muted = false;
+                        video.volume = 0.5;
+                        console.log('Video started playing with 50% volume');
+                    }).catch(e => {
+                        console.log('Auto-play prevented:', e);
                     });
                 } else {
                     // Video is not visible - pause it
