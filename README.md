@@ -8,7 +8,7 @@ Mirror Mirror AI is an innovative smart mirror project that combines computer vi
 
 ## 🚀 Live Demo
 
-**📱 [View Live Website](https://lihis.github.io/git-dinamic-page/)**
+**[View Live Website](https://ilihis.github.io/git-dinamic-page/)**
 
 ## 👥 Team
 
