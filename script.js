@@ -251,36 +251,49 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Copy citation to clipboard function
-function copyToClipboard() {
-    const citationText = `git clone https://github.com/iLihiS/git-dinamic-page.git
-cd git-dinamic-page
-# Install dependencies and run the project
-# For local development, simply open index.html in your browser`;
+// Copy code to clipboard function
+function copyToClipboard(button, step) {
+    let codeText = '';
+    
+    // Get the appropriate code based on the step
+    switch(step) {
+        case 'step1':
+            codeText = `git clone https://github.com/iLihiS/git-dinamic-page.git
+cd git-dinamic-page`;
+            break;
+        case 'step2':
+            codeText = `pip install -r requirements.txt`;
+            break;
+        case 'step3':
+            codeText = `python main.py`;
+            break;
+        default:
+            codeText = 'Code not found';
+    }
     
     // Create temporary textarea element
     const textarea = document.createElement('textarea');
-    textarea.value = citationText;
+    textarea.value = codeText;
     document.body.appendChild(textarea);
     textarea.select();
     
     try {
         document.execCommand('copy');
         
-        // Update button text temporarily
-        const copyBtn = document.querySelector('.copy-btn');
-        const originalContent = copyBtn.innerHTML;
-        copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
-        copyBtn.style.background = '#10b981';
+        // Update the specific button that was clicked
+        const originalContent = button.innerHTML;
+        const originalBackground = button.style.background;
+        button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        button.style.background = 'linear-gradient(135deg, rgba(1, 254, 238, 0.5) 0%, rgba(165, 102, 229, 0.5) 100%)';
         
         setTimeout(() => {
-            copyBtn.innerHTML = originalContent;
-            copyBtn.style.background = '#374151';
+            button.innerHTML = originalContent;
+            button.style.background = originalBackground || '#374151';
         }, 2000);
         
     } catch (err) {
-        console.error('Failed to copy citation: ', err);
-        alert('Failed to copy citation. Please copy it manually.');
+        console.error('Failed to copy code: ', err);
+        alert('Failed to copy code. Please copy it manually.');
     }
     
     document.body.removeChild(textarea);
