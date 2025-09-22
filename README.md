@@ -71,9 +71,12 @@ Our findings show that the system successfully:
 
 ## 🔗 Links
 
-- **🌐 [Live Website](https://lihis.github.io/git-dinamic-page/)**
-- **📺 [Demo Presentation](https://www.canva.com/design/DAGzsCh04XU/pAElWKISa-OeqFAqpbcSkQ/edit)**
-- **📄 [Project Documentation](https://docs.google.com/document/d/1W4IK6ipGdWQxoeqbFvuVZluwZ9Uwtt_v5Hicuhv_gq4/edit)**
+- **🌐 [Live Website](https://ilihis.github.io/git-dinamic-page/)**
+- **🎬 [Demo Presentation](https://www.canva.com/design/DAGzsCh04XU/pAElWKISa-OeqFAqpbcSkQ/edit?utm_content=DAGzsCh04XU&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)**
+- **📹 [Watch Marking Video](https://www.canva.com/design/DAGzsPHfhyU/LOvqWDIlEEccAweBjKIE0w/edit?utm_content=DAGzsPHfhyU&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)**
+- **📊 [Explanatory Presentation](https://www.canva.com/design/DAGzV3dyELE/FtfjOwmDhIZZoSNEObPtIQ/edit?utm_content=DAGzV3dyELE&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)**
+- **📄 [Summary Document](https://docs.google.com/document/d/1W4IK6ipGdWQxoeqbFvuVZluwZ9Uwtt_v5Hicuhv_gq4/edit?usp=sharing)**
+- **💻 [Source Code](https://github.com/iLihiS/git-dinamic-page)**
 
 ---
 
