@@ -253,12 +253,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Copy citation to clipboard function
 function copyToClipboard() {
-    const citationText = `@inproceedings{vidrakimronnoyshamir2025playing,
-  title={Playing Along - Building AI Agents for Co-Creation of Improvised Stories},
-  author={Vidra, Idan Dov and Kimron, Gal and Noy, Lior and Shamir, Ariel},
-  booktitle={Proceedings of the 16th International Conference on Computational Creativity},
-  year={2025}
-}`;
+    const citationText = `git clone https://github.com/iLihiS/git-dinamic-page.git
+cd git-dinamic-page
+# Install dependencies and run the project
+# For local development, simply open index.html in your browser`;
     
     // Create temporary textarea element
     const textarea = document.createElement('textarea');

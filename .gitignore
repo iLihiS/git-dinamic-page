@@ -30,4 +30,10 @@ npm-debug.log*
 .env.local
 .env.development.local
 .env.test.local
-.env.production.local 
+.env.production.local
+
+# Large video files
+*.mov
+*.mp4
+images/*.mov
+images/*.mp4 
