@@ -34,6 +34,4 @@ npm-debug.log*
 
 # Large video files
 *.mov
-*.mp4
 images/*.mov
-images/*.mp4 
