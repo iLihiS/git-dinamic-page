@@ -48,12 +48,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const listObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                console.log('Future work section is visible!');
                 const listItems = entry.target.querySelectorAll('li');
-                console.log('Found list items:', listItems.length);
                 listItems.forEach((item, index) => {
                     setTimeout(() => {
-                        console.log('Animating item', index);
                         item.classList.add('animate-in');
                     }, index * 400); // 400ms delay between each item
                 });
@@ -69,10 +66,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Observe future work list specifically
     const futureWorkBlocks = document.querySelectorAll('.future-work-list');
-    console.log('Found future work blocks:', futureWorkBlocks.length);
     futureWorkBlocks.forEach(block => {
         if (block.querySelector('ul')) {
-            console.log('Observing future work block');
             listObserver.observe(block);
         }
     });
@@ -81,12 +76,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const installationObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                console.log('Installation steps section is visible!');
                 const steps = entry.target.querySelectorAll('.installation-step');
-                console.log('Found installation steps:', steps.length);
                 steps.forEach((step, index) => {
                     setTimeout(() => {
-                        console.log('Animating step', index + 1);
                         step.classList.add('animate-in');
                     }, index * 500); // 500ms delay between each step
                 });
@@ -124,14 +116,11 @@ document.addEventListener('DOMContentLoaded', function() {
                         // Successfully started - now unmute and set volume
                         video.muted = false;
                         video.volume = 0.5;
-                        console.log('Video started playing with 50% volume');
                     }).catch(e => {
-                        console.log('Auto-play prevented:', e);
                     });
                 } else {
                     // Video is not visible - pause it
                     video.pause();
-                    console.log('Video paused');
                 }
             });
         }, {
@@ -168,7 +157,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Slight upward movement
                     translateY = -progress * 15;
                     
-                    console.log(`Video scaling: ${scale.toFixed(2)}, progress: ${progress.toFixed(2)}, optimal point: ${optimalPoint}px`);
                 }
                 
                 // Apply smooth transformation
@@ -292,7 +280,6 @@ cd git-dinamic-page`;
         }, 2000);
         
     } catch (err) {
-        console.error('Failed to copy code: ', err);
         alert('Failed to copy code. Please copy it manually.');
     }
     
@@ -415,3 +402,286 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style); 
+
+// Video Fullscreen Management
+class VideoManager {
+    constructor() {
+        this.currentVideo = null;
+        this.currentCard = null;
+        this.videos = [];
+        this.scrollTimeout = null;
+        this.videoVisibilityStates = new Map(); // Track visibility states
+        this.init();
+    }
+
+
+    init() {
+        // Find all videos in polaroid frames
+        this.videos = document.querySelectorAll('.retro-portrait video');
+        
+        // Add event listeners to each video
+        this.videos.forEach((video, index) => {
+            video.addEventListener('play', (e) => this.handleVideoPlay(e));
+            video.addEventListener('pause', (e) => this.handleVideoPause(e));
+            
+            // Also listen for ended event
+            video.addEventListener('ended', (e) => this.handleVideoPause(e));
+        });
+
+        // Listen for scroll to check video visibility (with throttling)
+        window.addEventListener('scroll', () => this.throttledHandleScroll());
+        window.addEventListener('resize', () => this.handleScroll());
+        
+        // Listen for ESC key to close expanded card
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.currentCard) {
+                if (this.currentVideo) {
+                    this.currentVideo.pause();
+                }
+                this.shrinkCard(this.currentCard);
+                this.currentVideo = null;
+                this.currentCard = null;
+            }
+        });
+    }
+
+    handleVideoPlay(event) {
+        const clickedVideo = event.target;
+        const clickedCard = clickedVideo.closest('.contribution-item');
+        
+        
+        // First, shrink ALL other cards and stop their videos
+        this.videos.forEach(video => {
+            const card = video.closest('.contribution-item');
+            if (video !== clickedVideo) {
+                // Stop video if playing
+                if (!video.paused) {
+                    video.pause();
+                }
+                // Shrink card if expanded
+                if (card && card.classList.contains('expanded')) {
+                    this.shrinkCard(card);
+                }
+            }
+        });
+
+        // Set as current video and card
+        this.currentVideo = clickedVideo;
+        this.currentCard = clickedCard;
+        
+        // Initialize visibility state for current video
+        this.videoVisibilityStates.set(clickedVideo, this.isVideoVisible(clickedVideo));
+        
+        // Expand this card
+        this.expandCard(clickedCard);
+    }
+
+    handleVideoPause(event) {
+        const pausedVideo = event.target;
+        const pausedCard = pausedVideo.closest('.contribution-item');
+        
+        // Always shrink the card when video is paused (manual or by scroll)
+        if (pausedCard && pausedCard.classList.contains('expanded')) {
+            this.shrinkCard(pausedCard);
+            
+            // Clear current video/card if this was the active one
+            if (pausedVideo === this.currentVideo) {
+                this.currentVideo = null;
+                this.currentCard = null;
+            }
+        }
+    }
+
+    throttledHandleScroll() {
+        // Clear existing timeout
+        if (this.scrollTimeout) {
+            clearTimeout(this.scrollTimeout);
+        }
+        
+        // Set new timeout
+        this.scrollTimeout = setTimeout(() => {
+            this.handleScroll();
+        }, 100); // Check every 100ms
+    }
+
+    handleScroll() {
+        
+        // Check ALL videos - both expanded and not expanded
+        this.videos.forEach((video, index) => {
+            const card = video.closest('.contribution-item');
+            const isExpanded = card && card.classList.contains('expanded');
+            const isVisible = this.isVideoVisible(video);
+            const wasVisible = this.videoVisibilityStates.get(video);
+            const isPlaying = !video.paused;
+            
+            
+            // If this is the first time checking this video, just store the state
+            if (wasVisible === undefined) {
+                this.videoVisibilityStates.set(video, isVisible);
+                return;
+            }
+            
+            // If visibility changed and video is playing, pause it
+            if (isPlaying && isVisible !== wasVisible) {
+                video.pause();
+                video.currentTime = 0;
+                
+                // Always shrink any expanded card when scrolling
+                if (card && card.classList.contains('expanded')) {
+                    this.shrinkCard(card);
+                }
+                
+                // Clear current video/card if this was the active one
+                if (video === this.currentVideo) {
+                    this.currentVideo = null;
+                    this.currentCard = null;
+                }
+            }
+            
+            // Also check if card is expanded but video is paused and not visible - shrink it
+            if (isExpanded && video.paused && !isVisible) {
+                this.shrinkCard(card);
+                if (video === this.currentVideo) {
+                    this.currentVideo = null;
+                    this.currentCard = null;
+                }
+            }
+            
+            // Update visibility state
+            this.videoVisibilityStates.set(video, isVisible);
+        });
+    }
+
+    expandCard(card) {
+        if (!card) return;
+        
+        // Store original styles for restoration
+        const computedStyle = window.getComputedStyle(card);
+        
+        card.dataset.originalTransform = computedStyle.transform;
+        card.dataset.originalZIndex = computedStyle.zIndex;
+        card.dataset.originalPosition = computedStyle.position;
+        
+        // Add expanded class for styling
+        card.classList.add('expanded');
+        
+        // Simple expansion from center - much more reliable!
+        card.style.position = 'relative';
+        card.style.transform = 'scale(1.5)';
+        card.style.transformOrigin = 'center center';
+        card.style.zIndex = '1000';
+        card.style.transition = 'all 0.5s ease';
+        
+        // Add click listener to shrink when clicking outside video
+        setTimeout(() => {
+            document.addEventListener('click', this.handleOutsideClick.bind(this));
+        }, 100);
+    }
+
+    shrinkCard(card) {
+        if (!card) return;
+        
+        // Remove expanded class
+        card.classList.remove('expanded');
+        
+        // Restore original styles
+        card.style.transform = card.dataset.originalTransform || '';
+        card.style.zIndex = card.dataset.originalZIndex || '';
+        card.style.position = card.dataset.originalPosition || '';
+        card.style.transformOrigin = '';
+        card.style.transition = '';
+        
+        // Clean up stored data
+        delete card.dataset.originalTransform;
+        delete card.dataset.originalZIndex;
+        delete card.dataset.originalPosition;
+        
+        // Remove click listener
+        document.removeEventListener('click', this.handleOutsideClick.bind(this));
+    }
+
+    handleOutsideClick(event) {
+        // Check if click was outside the expanded card
+        if (this.currentCard && !this.currentCard.contains(event.target)) {
+            // Pause video and shrink card
+            if (this.currentVideo) {
+                this.currentVideo.pause();
+            }
+            this.shrinkCard(this.currentCard);
+            this.currentVideo = null;
+            this.currentCard = null;
+        }
+    }
+
+
+    isVideoVisible(video) {
+        const rect = video.getBoundingClientRect();
+        const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+        const windowWidth = window.innerWidth || document.documentElement.clientWidth;
+
+        // Check if at least 50% of the video is visible
+        const visibleHeight = Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0);
+        const visibleWidth = Math.min(rect.right, windowWidth) - Math.max(rect.left, 0);
+        
+        const videoArea = rect.width * rect.height;
+        const visibleArea = Math.max(0, visibleHeight) * Math.max(0, visibleWidth);
+        
+        // Return true if at least 50% of video is visible
+        return videoArea > 0 && (visibleArea / videoArea) >= 0.5;
+    }
+}
+
+// Row Animation Manager
+class RowAnimationManager {
+    constructor() {
+        this.initRowAnimations();
+    }
+
+    initRowAnimations() {
+        // Group cards into rows based on their position
+        const cards = document.querySelectorAll('.contribution-item');
+        const firstRowCards = Array.from(cards).slice(0, 3);
+        const secondRowCards = Array.from(cards).slice(3, 6);
+
+        // Create row containers
+        this.createRowAnimations(firstRowCards, 'first-row');
+        this.createRowAnimations(secondRowCards, 'second-row');
+    }
+
+    createRowAnimations(cards, rowClass) {
+        if (cards.length === 0) return;
+
+        // Add initial hidden state to all cards in this row
+        cards.forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(50px)';
+            card.style.transition = `opacity 0.8s ease ${index * 0.1}s, transform 0.8s ease ${index * 0.1}s`;
+            card.classList.add(rowClass);
+        });
+
+        // Create intersection observer for this row
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Animate all cards in this row
+                    cards.forEach(card => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.3
+        });
+
+        // Observe the first card in the row as trigger
+        observer.observe(cards[0]);
+    }
+}
+
+// Initialize both managers when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    new VideoManager();
+    new RowAnimationManager();
+}); 
